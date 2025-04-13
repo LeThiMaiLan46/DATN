@@ -1,0 +1,5 @@
+ntq_tts_services/
+backend/dockerfile
+backend/requirements.txt
+/datn
+.env
