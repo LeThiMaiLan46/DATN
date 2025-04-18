@@ -1,0 +1,43 @@
+
+services:
+  datn-backend:
+    container_name: tex2speecht-backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    image: datn-be
+    ports:
+      - 6060:6060
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./models/:/app/models/
+      - ./:/app/workdir
+    restart: always
+    env_file:
+      - ./backend/.env
+
+    networks:
+      - datn-network
+
+  datn-frontend:
+    container_name: tex2speech-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: datn-fe
+    ports:
+      - 5173:5173
+    restart: always
+    command: ["npm", "run", "dev"]
+    networks:
+      - datn-network
+
+networks:
+  datn-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24 
