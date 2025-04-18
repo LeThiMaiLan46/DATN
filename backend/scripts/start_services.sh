@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=0,1 python3 -m src.main
+CUDA_VISIBLE_DEVICES=0 python3 -m src.main

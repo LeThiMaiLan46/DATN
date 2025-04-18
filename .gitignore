@@ -4,3 +4,4 @@ backend/dockerfile
 backend/requirements.txt
 .env
 /models
+/app
