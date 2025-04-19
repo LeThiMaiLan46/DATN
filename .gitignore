@@ -1,6 +1,6 @@
 ntq_tts_services/
 /datn
-backend/dockerfile
+backend/voices/
 backend/requirements.txt
 /models
 /app
