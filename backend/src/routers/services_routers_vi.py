@@ -11,7 +11,6 @@ from fastapi.responses import FileResponse, Response
 from fastapi.responses import StreamingResponse
 from src.models.payload import TTS_Request, Delete_audio
 from src.sevices.text2speech import TTS_Vi_Services
-from src.utils.minio_worker import Minio_Worker
 from dotenv import load_dotenv
 
 
@@ -22,7 +21,6 @@ router = APIRouter()
 #====== define config path ============
 tts_path_model = os.environ.get('VI_TTS_PATH_MODEL')
 tts_configs = os.environ.get('VI_TTS_CONFIGS')
-path_audio_stogare = os.environ.get('PATH_AUDIO_STOGARE')
 
 path_audio_style = os.environ.get('AUDIO_SAMPLE_DIR')
 

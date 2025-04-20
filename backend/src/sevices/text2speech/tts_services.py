@@ -68,8 +68,8 @@ class TTS_Vi_Services():
         self.config = XttsConfig()
         self.config.load_json(path_config)
         self.model = Xtts.init_from_config(self.config)
-        self.model.load_checkpoint(self.config, checkpoint_dir=path_model, use_deepspeed=False).to('cpu')
-        # self.model.cuda()
+        self.model.load_checkpoint(self.config, checkpoint_dir=path_model, use_deepspeed=True)
+        self.model.cuda()
         logging.info('Load model Text to Speech successfully! ......')
         self.num_worker_threads = 4
         
