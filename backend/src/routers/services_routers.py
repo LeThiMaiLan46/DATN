@@ -10,7 +10,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.responses import FileResponse, Response
 from fastapi.responses import StreamingResponse
 from src.models.payload import TTS_Request, Delete_audio
-from src.sevices.text2speech import TTS_Vi_Services
+from src.sevices.tts_services import TTS_Vi_Services
 from dotenv import load_dotenv
 
 
