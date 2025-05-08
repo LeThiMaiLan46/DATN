@@ -44,7 +44,7 @@ python3 -m unidic download
 pip3 install --upgrade pip
 
 # Install requirements (adjust path if needed)
-pip3 install --default-timeout=90000 -r /workspace/DATN/backend/requirements-vi.txt
+pip3 install --default-timeout=90000 -r /workspace/DATN/backend/requirements.txt
 
 # Run the service
 sh ./script/start_services_vi.sh
