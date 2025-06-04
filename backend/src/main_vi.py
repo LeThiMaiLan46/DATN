@@ -37,7 +37,7 @@ app.add_middleware(
 app.include_router(services_routers.router, prefix="", tags=["ntq_services"])
 
 def main():
-    uvicorn.run("src.main_vi:app", host="0.0.0.0", port=6006)
+    uvicorn.run("src.main_vi:app", host="0.0.0.0", port=6064)
     logging.info('Services already to use! ......')
 if __name__ == "__main__":
     main()

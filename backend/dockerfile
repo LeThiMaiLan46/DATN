@@ -31,10 +31,10 @@ RUN pip3 install fugashi[unidic-lite] fugashi[unidic]
 RUN python3 -m unidic download
 
 RUN pip3 install --upgrade pip
-COPY requirements-vi.txt requirements-vi.txt
-RUN python3 -m pip install --default-timeout=90000 -r /app/tts_services/requirements-vi.txt
+COPY requirements.txt requirements.txt
+RUN python3 -m pip install --default-timeout=90000 -r /app/tts_services/requirements.txt
 
 
 COPY . /app/tts_services/
 
-CMD [ "sh", "./script/start_services_vi.sh" ]
+CMD [ "sh", "./scripts/start_services_vi.sh" ]

@@ -3,20 +3,11 @@ import time
 import torch
 import logging
 import torchaudio
-import queue
-import threading
-import json
-import re
 from TTS.tts.configs.xtts_config import XttsConfig
 from TTS.tts.models.xtts import Xtts
 from io import BytesIO
 from vinorm import TTSnorm
-from src.sevices.kokoro_pipeline import KPipeline
-from src.sevices.kokoro_pipeline.model import KModel
-from transformers import VitsModel, AutoTokenizer
-from src.utils.text_input_normalize import expand_abbreviations
-
-
+from src.utils.text_input_normalize import expand_abbreviations, normalize_text
 from src.utils.text_split import split_by_char_limit_multilingual
 
 class TTS_Vi_Services():
@@ -81,6 +72,8 @@ class TTS_Vi_Services():
         :return: BytesIO object containing the generated WAV audio
         """
         # Get conditioning latents for speaker style
+        text = text.lower()
+        text = normalize_text(text=text)
         try:
             self.gpt_cond_latent, self.speaker_embedding = self.model.get_conditioning_latents(
                 audio_path=[path_audio_style]

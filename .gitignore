@@ -4,3 +4,4 @@ backend/voices/
 backend/requirements.txt
 /models
 /app
+backend/.env

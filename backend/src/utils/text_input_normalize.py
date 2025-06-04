@@ -2,90 +2,88 @@ import re
 
 # Your abbreviation mapping
 ABBREVIATIONS = [
-    # Format: ("Abbreviation", "Full form")
-    ("GS", "Giáo sư"),
-    ("PGS", "Phó Giáo sư"),
-    ("TS", "Tiến sĩ"),
-    ("ThS", "Thạc sĩ"),
-    ("KS", "Kỹ sư"),
-    ("BS", "Bác sĩ"),
-    ("CN", "Cử nhân"),
-    ("NSND", "Nghệ sĩ nhân dân"),
-    ("NSƯT", "Nghệ sĩ ưu tú"),
-    ("DS", "Dược sĩ"),
-    ("TTND", "Thầy thuốc nhân dân"),
-    ("TTƯT", "Thầy thuốc ưu tú"),
-    ("UBND", "Ủy ban Nhân dân"),
-    ("HĐND", "Hội đồng Nhân dân"),
-    ("BYT", "Bộ Y tế"),
-    ("BGDĐT", "Bộ Giáo dục và Đào tạo"),
-    ("BCA", "Bộ Công an"),
-    ("BQP", "Bộ Quốc phòng"),
-    ("BTP", "Bộ Tư pháp"),
-    ("BLĐTBXH", "Bộ Lao động Thương binh và Xã hội"),
-    ("BVHTTDL", "Bộ Văn hóa Thể thao và Du lịch"),
-    ("BTNMT", "Bộ Tài nguyên và Môi trường"),
-    ("TTCP", "Thanh tra Chính phủ"),
-    ("VKSNDTC", "Viện Kiểm sát nhân dân tối cao"),
-    ("TANDTC", "Tòa án nhân dân tối cao"),
-    ("ĐHQG", "Đại học Quốc gia"),
-    ("ĐHBK", "Đại học Bách khoa"),
-    ("ĐHKT", "Đại học Kinh tế"),
-    ("ĐHKHTN", "Đại học Khoa học Tự nhiên"),
-    ("ĐHKHXH&NV", "Đại học Khoa học Xã hội và Nhân văn"),
-    ("ĐHSP", "Đại học Sư phạm"),
-    ("ĐHNN", "Đại học Ngoại ngữ"),
-    ("ĐHKTQD", "Đại học Kinh tế Quốc dân"),
-    ("HVBC&TT", "Học viện Báo chí và Tuyên truyền"),
-    ("HVN", "Học viện Ngoại giao"),
-    ("HVCH", "Học viện Cảnh sát"),
-    ("TP", "Thành phố"),
-    ("TPHCM", "Thành phố Hồ Chí Minh"),
-    ("HN", "Hà Nội"),
-    ("HP", "Hải Phòng"),
-    ("ĐN", "Đà Nẵng"),
-    ("CT", "Cần Thơ"),
-    ("BD", "Bình Dương"),
-    ("BN", "Bắc Ninh"),
-    ("HCM", "Hồ Chí Minh"),
-    ("CMND", "Chứng minh nhân dân"),
-    ("CCCD", "Căn cước công dân"),
-    ("QĐ", "Quyết định"),
-    ("TT", "Thông tư"),
-    ("NĐ", "Nghị định"),
-    ("CV", "Công văn"),
-    ("GCNĐKDN", "Giấy chứng nhận đăng ký doanh nghiệp"),
-    ("GCNQSDĐ", "Giấy chứng nhận quyền sử dụng đất"),
-    ("GPLĐ", "Giấy phép lao động"),
-    ("NXB", "Nhà xuất bản"),
-    ("TW", "Trung ương"),
-    ("TNHH", "Trách nhiệm hữu hạn"),
-    ("CP", "Cổ phần"),
-    ("CTCP", "Công ty cổ phần"),
-    ("CTTTNHH", "Công ty trách nhiệm hữu hạn"),
-    ("THPT", "Trung học phổ thông"),
-    ("THCS", "Trung học cơ sở"),
-    ("QH", "Quốc hội"),
-    ("ĐBQH", "Đại biểu Quốc hội"),
-    ("BHYT", "Bảo hiểm y tế"),
-    ("BHXH", "Bảo hiểm xã hội"),
-    ("BHTN", "Bảo hiểm thất nghiệp"),
-    ("GTGT", "Giá trị gia tăng"),
-    ("TNCN", "Thu nhập cá nhân"),
-    ("HĐLĐ", "Hợp đồng lao động"),
-    ("XHCN", "Xã hội chủ nghĩa"),
-    ("VNCH", "Việt Nam Cộng hòa"),
-    ("CHXHCNVN", "Cộng hòa Xã hội Chủ nghĩa Việt Nam"),
+    ("gs", "giáo sư"),
+    ("pgs", "phó giáo sư"),
+    ("ts", "tiến sĩ"),
+    ("ths", "thạc sĩ"),
+    ("ks", "kỹ sư"),
+    ("bs", "bác sĩ"),
+    ("cn", "cử nhân"),
+    ("nsnd", "nghệ sĩ nhân dân"),
+    ("nsưt", "nghệ sĩ ưu tú"),
+    ("ds", "dược sĩ"),
+    ("ttnd", "thầy thuốc nhân dân"),
+    ("ttưt", "thầy thuốc ưu tú"),
+    ("ubnd", "ủy ban nhân dân"),
+    ("hđnd", "hội đồng nhân dân"),
+    ("byt", "bộ y tế"),
+    ("bgdđt", "bộ giáo dục và đào tạo"),
+    ("bca", "bộ công an"),
+    ("bqp", "bộ quốc phòng"),
+    ("btp", "bộ tư pháp"),
+    ("blđtbxh", "bộ lao động thương binh và xã hội"),
+    ("bvhttdl", "bộ văn hóa thể thao và du lịch"),
+    ("btnmt", "bộ tài nguyên và môi trường"),
+    ("ttcp", "thanh tra chính phủ"),
+    ("vksndtc", "viện kiểm sát nhân dân tối cao"),
+    ("tandtc", "tòa án nhân dân tối cao"),
+    ("đhqg", "đại học quốc gia"),
+    ("đhbk", "đại học bách khoa"),
+    ("đhkt", "đại học kinh tế"),
+    ("đhkhtn", "đại học khoa học tự nhiên"),
+    ("đhkxh&nv", "đại học khoa học xã hội và nhân văn"),
+    ("đhsp", "đại học sư phạm"),
+    ("đhnn", "đại học ngoại ngữ"),
+    ("đhktqd", "đại học kinh tế quốc dân"),
+    ("hvbc&tt", "học viện báo chí và tuyên truyền"),
+    ("hvn", "học viện ngoại giao"),
+    ("hvch", "học viện cảnh sát"),
+    ("tp", "thành phố"),
+    ("tphcm", "thành phố hồ chí minh"),
+    ("hn", "hà nội"),
+    ("hp", "hải phòng"),
+    ("đn", "đà nẵng"),
+    ("ct", "cần thơ"),
+    ("bd", "bình dương"),
+    ("bn", "bắc ninh"),
+    ("hcm", "hồ chí minh"),
+    ("cmnd", "chứng minh nhân dân"),
+    ("cccd", "căn cước công dân"),
+    ("qđ", "quyết định"),
+    ("tt", "thông tư"),
+    ("nđ", "nghị định"),
+    ("cv", "công văn"),
+    ("gcnđkdn", "giấy chứng nhận đăng ký doanh nghiệp"),
+    ("gcnqsđđ", "giấy chứng nhận quyền sử dụng đất"),
+    ("gplđ", "giấy phép lao động"),
+    ("nxb", "nhà xuất bản"),
+    ("tw", "trung ương"),
+    ("tnhh", "trách nhiệm hữu hạn"),
+    ("cp", "cổ phần"),
+    ("ctcp", "công ty cổ phần"),
+    ("ctttnhh", "công ty trách nhiệm hữu hạn"),
+    ("thpt", "trung học phổ thông"),
+    ("thcs", "trung học cơ sở"),
+    ("qh", "quốc hội"),
+    ("dbqh", "đại biểu quốc hội"),
+    ("bhyt", "bảo hiểm y tế"),
+    ("bhxh", "bảo hiểm xã hội"),
+    ("bhtn", "bảo hiểm thất nghiệp"),
+    ("gtgt", "giá trị gia tăng"),
+    ("tncn", "thu nhập cá nhân"),
+    ("hđlđ", "hợp đồng lao động"),
+    ("xhcn", "xã hội chủ nghĩa"),
+    ("vnch", "việt nam cộng hòa"),
+    ("chxhcnvn", "cộng hòa xã hội chủ nghĩa việt nam"),
 ]
+
 
 def expand_abbreviations(text, with_dot=True):
     """
     Replace abbreviations with their full form in the given text.
-    
     Args:
         text (str): Input text containing abbreviations.
         with_dot (bool): If True, matches "ABBR." only. If False, matches "ABBR" with/without dot.
-
     Returns:
         str: Modified text with expanded abbreviations.
     """
@@ -96,5 +94,22 @@ def expand_abbreviations(text, with_dot=True):
             pattern = re.compile(r"\b%s\.?" % re.escape(abbr), re.IGNORECASE)
 
         text = pattern.sub(full, text)
+    return text
+
+def normalize_text(text):
+    """
+    Normalize text: strip, lowercase, expand abbreviations, and clean spacing.
+    """
+    # Strip leading/trailing whitespace
+    text = text.strip()
+
+    # Expand abbreviations (first without dot, then with dot to catch all cases)
+    text = expand_abbreviations(text, with_dot=False)
+
+    # Remove extra spaces
+    text = re.sub(r"\s+", " ", text)
+
+    # Convert to lowercase
+    text = text.lower()
 
     return text

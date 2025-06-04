@@ -161,6 +161,8 @@ let mediaRecorder = null
 let audioChunks = []
 let recordingTimer = null
 
+// Backend API URLs - thay đổi theo địa chỉ backend của bạn
+const API_BASE_URL = 'https://stt-vais.ntq.ai'
 
 // Check media support on component mount
 onMounted(async () => {
