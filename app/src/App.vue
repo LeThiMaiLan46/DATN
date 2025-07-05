@@ -103,7 +103,7 @@ export default {
         
         const response = await axios({
           method: 'post',
-          url: 'http://10.0.64.77:6061/api/v1/text/phonemize',
+          url: 'http://abcdxyz/api/v1/text/phonemize',
           data: {
             text: this.text,
             language: 'vi',
